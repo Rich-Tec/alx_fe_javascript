@@ -8,12 +8,12 @@ const quotes = [
 // Function to display a random quote
 function showRandomQuote() {
   if (quotes.length === 0) {
-    document.getElementById("quoteDisplay").textContent = "No quotes available.";
+    document.getElementById("quoteDisplay").innerHTML = "No quotes available."; // CHANGED HERE
     return;
   }
   const randomIndex = Math.floor(Math.random() * quotes.length);
   const quote = quotes[randomIndex];
-  document.getElementById("quoteDisplay").textContent = `"${quote.text}" — [${quote.category}]`;
+  document.getElementById("quoteDisplay").innerHTML = `"${quote.text}" — [${quote.category}]`; // CHANGED HERE
 }
 
 // Function to add a new quote
@@ -36,5 +36,5 @@ function addQuote() {
   alert("Quote added successfully!");
 }
 
-// Attach event listener to button
+// Attach event listener to button (assuming 'newQuote' is the button to show a random quote)
 document.getElementById("newQuote").addEventListener("click", showRandomQuote);
