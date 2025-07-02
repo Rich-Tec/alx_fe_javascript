@@ -5,12 +5,10 @@ const SERVER_URL = 'https://jsonplaceholder.typicode.com/posts'; // Fake API for
 
 // --- Core Functionalities ---
 
-// Save quotes to localStorage
 function saveQuotes() {
     localStorage.setItem('quotes', JSON.stringify(quotes));
 }
 
-// Display quotes (single or multiple) in the main container
 function displayQuotes(quoteList) {
     const container = document.getElementById('quoteDisplay');
     container.innerHTML = '';
@@ -34,7 +32,7 @@ function showRandomQuote() {
     }
     const randomIndex = Math.floor(Math.random() * quotes.length);
     const quoteObject = quotes[randomIndex];
-    displayQuotes([quoteObject]); 
+    displayQuotes([quoteObject]);
     const formattedQuote = `"${quoteObject.text}" — [${quoteObject.category || 'Uncategorized'}]`;
     sessionStorage.setItem('lastViewedQuoteText', formattedQuote);
 }
@@ -146,7 +144,7 @@ async function fakePostToServer(quote) {
         const response = await fetch(SERVER_URL, {
             method: 'POST',
             body: JSON.stringify(quote),
-            headers: { 'Content-type': 'application/json; charset=UTF-8' }
+            headers: { 'Content-Type': 'application/json; charset=UTF-8' } // ✅ Corrected case
         });
 
         if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
@@ -273,7 +271,7 @@ function importFromJsonFile(event) {
     fileReader.readAsText(file);
 }
 
-// --- DOMContentLoaded Initialization ---
+// --- Initialization ---
 
 window.addEventListener('DOMContentLoaded', () => {
     const storedQuotes = localStorage.getItem('quotes');
